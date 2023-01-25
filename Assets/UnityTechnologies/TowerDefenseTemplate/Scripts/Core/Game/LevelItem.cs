@@ -27,5 +27,12 @@ namespace Core.Game
 		/// The name of the scene to load
 		/// </summary>
 		public string sceneName;
+
+		/// <summary>
+		/// If the level has been completed
+		/// </summary>
+		public bool isCompleted;
+
+		public bool levelLocked;
 	}
 }

@@ -201,6 +201,10 @@ namespace TowerDefense.UI
 			GameManager gm = GameManager.instance;
 			LevelItem item = gm.GetLevelForCurrentScene();
 			LevelList list = gm.levelList;
+
+			//level completed
+			item.isCompleted = true;
+
 			int levelCount = list.Count;
 			int index = -1;
 			for (int i = 0; i < levelCount; i++)
@@ -208,6 +212,10 @@ namespace TowerDefense.UI
 				if (item == list[i])
 				{
 					index = i;
+
+					//unlock next level
+					item = list[i];
+					item.levelLocked = false;
 					break;
 				}
 			}

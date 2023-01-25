@@ -27,6 +27,8 @@ namespace TowerDefense.UI
 
 		public Sprite starAchieved;
 
+		public Image levelLockedImage;
+
 		public Image[] stars;
 
 		protected MouseScroll m_MouseScroll;
