@@ -6,8 +6,12 @@ namespace TowerDefense.Towers.Placement
 	/// <summary>
 	/// An interface for a placement area that can contain a tower
 	/// </summary>
-	public interface IPlacementArea
+	public interface IPlacementArea 
 	{
+		/// <summary>
+		/// Reference to the gameobject this script is attached to.
+		/// </summary>
+		GameObject gameObject { get; }
 		/// <summary>
 		/// Gets this object's transform
 		/// </summary>

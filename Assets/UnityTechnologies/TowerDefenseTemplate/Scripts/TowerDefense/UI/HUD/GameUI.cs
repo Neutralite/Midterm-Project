@@ -144,10 +144,10 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Placement area ghost tower is currently on
 		/// </summary>
-		IPlacementArea m_CurrentArea;
+		[SerializeField] IPlacementArea m_CurrentArea;
 
 		/// <summary>
-		/// Grid position ghost tower in on
+		/// Grid position ghost tower is on
 		/// </summary>
 		IntVector2 m_GridPosition;
 
@@ -159,7 +159,7 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Current tower placeholder. Will be null if not in the <see cref="State.Building" /> state.
 		/// </summary>
-		TowerPlacementGhost m_CurrentTower;
+		[SerializeField] TowerPlacementGhost m_CurrentTower;
 
 		/// <summary>
 		/// Tracks if the ghost is in a valid location and the player can afford it
@@ -595,10 +595,15 @@ namespace TowerDefense.UI.HUD
 			{
 				return false;
 			}
-			if (m_CurrentArea == null)
+            if (m_CurrentArea == null)
 			{
 				return false;
 			}
+			// If the platform doesn't have the same tag as the gameobject don't place it.
+			if (!m_CurrentArea.gameObject.CompareTag(m_CurrentTower.gameObject.tag))
+            {
+				return false;
+            }
 			TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 			return fits == TowerFitStatus.Fits;
 		}

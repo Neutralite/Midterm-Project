@@ -54,6 +54,10 @@ namespace TowerDefense.Towers.Placement
 		/// <param name="worldLocation"><see cref="Vector3"/> indicating world space coordinates to convert.</param>
 		/// <param name="sizeOffset"><see cref="IntVector2"/> indicating size of object to center.</param>
 		/// <returns><see cref="IntVector2"/> containing the grid coordinates corresponding to this location.</returns>
+		/// 
+
+		public bool isBomb;
+		public bool isTower;
 		public IntVector2 WorldToGrid(Vector3 worldLocation, IntVector2 sizeOffset)
 		{
 			Vector3 localLocation = transform.InverseTransformPoint(worldLocation);
