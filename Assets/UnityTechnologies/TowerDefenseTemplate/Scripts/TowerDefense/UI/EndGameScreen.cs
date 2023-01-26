@@ -202,21 +202,19 @@ namespace TowerDefense.UI
 			LevelItem item = gm.GetLevelForCurrentScene();
 			LevelList list = gm.levelList;
 
-			//level completed
-			item.isCompleted = true;
-
 			int levelCount = list.Count;
 			int index = -1;
 			for (int i = 0; i < levelCount; i++)
 			{
+
 				if (item == list[i])
 				{
 					index = i;
 
-					//unlock next level
-					item = list[i];
-					item.levelLocked = false;
-					break;
+                    //unlock next level
+                    item = list[i + 1];
+                    item.levelLocked = false;
+                    break;
 				}
 			}
 			//if the level does not exist or this is the last level

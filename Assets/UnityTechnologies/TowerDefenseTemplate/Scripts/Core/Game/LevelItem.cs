@@ -29,10 +29,8 @@ namespace Core.Game
 		public string sceneName;
 
 		/// <summary>
-		/// If the level has been completed
+		/// Whether or not the level is locked
 		/// </summary>
-		public bool isCompleted;
-
 		public bool levelLocked;
 	}
 }

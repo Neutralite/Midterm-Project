@@ -69,9 +69,9 @@ namespace TowerDefense.UI
 				button.transform.localScale = Vector3.one;
 				m_Buttons.Add(button.GetComponent<Button>());
 
-				//If level is locked disabled play button and enable locked level image
+				//If level is locked disable play button and enable locked level image
 				LevelItem item = m_LevelList[i];
-				if (!item.isCompleted)
+				if (item.levelLocked)
 				{
 					button.GetComponent<Button>().enabled = false;
 					button.levelLockedImage.enabled = true;
