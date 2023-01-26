@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 114572677471174774}
   m_Layer: 10
   m_Name: Bomb_0
-  m_TagString: Bomb
+  m_TagString: RoadPlacement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8f3bca1ae40d27e4a8a895f632c41e99, type: 3}
       propertyPath: m_TagString
-      value: Bomb
+      value: RoadPlacement
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8f3bca1ae40d27e4a8a895f632c41e99, type: 3}
       propertyPath: m_RootOrder
