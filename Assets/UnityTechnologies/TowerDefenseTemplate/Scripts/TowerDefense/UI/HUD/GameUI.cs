@@ -144,7 +144,7 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Placement area ghost tower is currently on
 		/// </summary>
-		[SerializeField] IPlacementArea m_CurrentArea;
+		IPlacementArea m_CurrentArea;
 
 		/// <summary>
 		/// Grid position ghost tower is on
@@ -159,7 +159,7 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Current tower placeholder. Will be null if not in the <see cref="State.Building" /> state.
 		/// </summary>
-		[SerializeField] TowerPlacementGhost m_CurrentTower;
+		TowerPlacementGhost m_CurrentTower;
 
 		/// <summary>
 		/// Tracks if the ghost is in a valid location and the player can afford it

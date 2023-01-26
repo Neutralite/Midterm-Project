@@ -503,6 +503,8 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   levels:
   - {fileID: 114572677471174774, guid: e73469c53ede18d44b781622a645328b, type: 3}
+  - {fileID: 114572677471174774, guid: 5c9da739385a98249bb3f10a47c71f9b, type: 3}
+  - {fileID: 114572677471174774, guid: ed8da280d41a0ce40815ed59318e0659, type: 3}
   towerName: Bomb
   dimensions:
     x: 1

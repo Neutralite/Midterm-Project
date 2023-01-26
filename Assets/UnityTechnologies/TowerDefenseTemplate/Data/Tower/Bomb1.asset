@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Tier 1 - Bomb
   upgradeDescription: 
-  cost: 2
+  cost: 5
   sell: 1
   maxHealth: 1
   startingHealth: 1
