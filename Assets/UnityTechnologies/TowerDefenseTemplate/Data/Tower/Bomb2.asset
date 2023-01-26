@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bomb2
   m_EditorClassIdentifier: 
   description: Tier 2 - Bomb
-  upgradeDescription: 
+  upgradeDescription: +2 range
   cost: 10
   sell: 2
   maxHealth: 1
