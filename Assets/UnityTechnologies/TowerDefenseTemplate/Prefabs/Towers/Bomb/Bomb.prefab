@@ -495,8 +495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configuration:
-    maxHealth: 10
-    startingHealth: 10
+    maxHealth: 1
+    startingHealth: 1
     alignment:
       unityObjectReference: {fileID: 11400000, guid: 2e20cdb38c63f4edf8ee385c50c089ce,
         type: 2}
@@ -505,11 +505,11 @@ MonoBehaviour:
   - {fileID: 114572677471174774, guid: e73469c53ede18d44b781622a645328b, type: 3}
   towerName: Bomb
   dimensions:
-    x: 2
-    y: 2
+    x: 1
+    y: 1
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
 --- !u!114 &114889417632013692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691257490863768}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.5, y: 1, z: 0.5}
@@ -698,6 +698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageableBehaviour: {fileID: 114249057418921680}
-  deathParticleSystemPrefab: {fileID: 198059975614214484, guid: 7a0476686964e41ac8320b7cf37868c2,
+  deathParticleSystemPrefab: {fileID: 198059975614214484, guid: f43a73bac381a4517bdade908e622a9e,
     type: 3}
   deathEffectOffset: {x: 0, y: 0, z: 0}
