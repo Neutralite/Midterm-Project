@@ -104,10 +104,10 @@ namespace Core.Data
 		/// <summary>
 		/// Initialize volumes. We cannot change mixer params on awake
 		/// </summary>
-		protected virtual void Start()
-		{
-			SetVolumes(m_DataStore.masterVolume, m_DataStore.sfxVolume, m_DataStore.musicVolume, false);
-		}
+		//protected virtual void Start()
+		//{
+		//	SetVolumes(m_DataStore.masterVolume, m_DataStore.sfxVolume, m_DataStore.musicVolume, false);
+		//}
 
 		/// <summary>
 		/// Set up persistence
