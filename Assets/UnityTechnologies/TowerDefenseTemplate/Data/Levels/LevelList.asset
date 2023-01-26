@@ -22,7 +22,7 @@ MonoBehaviour:
     name: Level 2
     description: Create mazes to slow enemies
     sceneName: Level2
-    levelLocked: 0
+    levelLocked: 1
   - id: 2
     name: Level 3
     description: Take advantage of choke points
