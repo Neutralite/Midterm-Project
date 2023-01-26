@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBomb: 1
   attackRange: 5
-  damageAmount: 5
+  damageAmount: 3
   mask:
     serializedVersion: 2
     m_Bits: 2048

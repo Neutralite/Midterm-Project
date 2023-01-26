@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bomb3
   m_EditorClassIdentifier: 
   description: Tier 3 - Bomb
-  upgradeDescription: 
+  upgradeDescription: +3 range +2 damage
   cost: 15
   sell: 3
   maxHealth: 1
