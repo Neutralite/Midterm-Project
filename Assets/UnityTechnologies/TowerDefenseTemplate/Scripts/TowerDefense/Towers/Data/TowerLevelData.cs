@@ -18,6 +18,7 @@ namespace TowerDefense.Towers.Data
 		/// <summary>
 		/// A description of the tower for displaying on the UI
 		/// </summary>
+		[TextArea(3, 15)]
 		public string upgradeDescription;
 
 		/// <summary>
