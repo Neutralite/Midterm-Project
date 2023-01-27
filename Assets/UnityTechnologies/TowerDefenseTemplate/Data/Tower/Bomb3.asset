@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e2352be0954e359a850a9d99215c6e, type: 3}
   m_Name: Bomb3
   m_EditorClassIdentifier: 
-  description: Tier 3 - Bomb
+  description: Tier 3 - Bomb - Can only be placed on the road.
   upgradeDescription: +3 range +2 damage
   cost: 15
   sell: 3
