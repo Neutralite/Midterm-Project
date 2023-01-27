@@ -37,10 +37,15 @@ namespace Core.Data
 		/// </summary>
 		public string musicVolumeParameter;
 
-		/// <summary>
-		/// The serialization implementation for persistence 
-		/// </summary>
-		protected JsonSaver<TDataStore> m_DataSaver;
+        /// <summary>
+        /// Mixer's Music volume parameter's attenuation fader value in dB
+        /// </summary>
+        public int musicAttenuationFaderValue;
+
+        /// <summary>
+        /// The serialization implementation for persistence 
+        /// </summary>
+        protected JsonSaver<TDataStore> m_DataSaver;
 
 		/// <summary>
 		/// The object used for persistence
@@ -79,7 +84,7 @@ namespace Core.Data
 			}
 			if (musicVolumeParameter != null)
 			{
-				gameMixer.SetFloat(musicVolumeParameter, LogarithmicDbTransform(Mathf.Clamp01(music)));
+				gameMixer.SetFloat(musicVolumeParameter, LogarithmicDbTransform(Mathf.Clamp01(music))+musicAttenuationFaderValue);
 			}
 
 			if (save)
@@ -104,10 +109,10 @@ namespace Core.Data
 		/// <summary>
 		/// Initialize volumes. We cannot change mixer params on awake
 		/// </summary>
-		//protected virtual void Start()
-		//{
-		//	SetVolumes(m_DataStore.masterVolume, m_DataStore.sfxVolume, m_DataStore.musicVolume, false);
-		//}
+		protected virtual void Start()
+		{
+			SetVolumes(m_DataStore.masterVolume, m_DataStore.sfxVolume, m_DataStore.musicVolume, false);
+		}
 
 		/// <summary>
 		/// Set up persistence
