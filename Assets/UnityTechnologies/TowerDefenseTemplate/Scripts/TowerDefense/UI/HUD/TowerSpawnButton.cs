@@ -144,16 +144,17 @@ namespace TowerDefense.UI.HUD
 			}
 
 			// Enable button
-			if (m_Currency.CanAfford(m_Tower.purchaseCost) && !buyButton.interactable)
+			if (m_Currency.CanAfford(m_Tower.purchaseCost))
 			{
 				buyButton.interactable = true;
 				energyIcon.color = energyDefaultColor;
 			}
-			else if (!m_Currency.CanAfford(m_Tower.purchaseCost) && buyButton.interactable)
+			else if (!m_Currency.CanAfford(m_Tower.purchaseCost))
 			{
-				buyButton.interactable = false;
+				buyButton.interactable = true;
 				energyIcon.color = energyInvalidColor;
-			}
+				buyButton.image.color = energyInvalidColor;
+            }
 		}
 	}
 }
