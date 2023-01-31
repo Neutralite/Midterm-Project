@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Core.Camera
 {
@@ -24,6 +25,12 @@ namespace Core.Camera
 		/// Object for the camera to look at initially
 		/// </summary>
 		public Transform initialLookAt;
+
+
+        /// <summary>
+        /// Object for the camera to look after intial 
+        /// </summary>
+        public Transform endLookAt;
 		
 		/// <summary>
 		/// On start, set camera parameters
@@ -42,10 +49,35 @@ namespace Core.Camera
 					break;
 			}
 
-			if (initialLookAt != null)
-			{
-				rig.PanTo(initialLookAt.transform.position);
-			}
+
+			StartCoroutine(CameraPan());
+			
 		}
-	}
+
+
+        IEnumerator CameraPan()
+        {
+            var rig = GetComponent<CameraRig>();
+
+			
+
+            if (initialLookAt != null)
+            {
+                 rig.PanTo(initialLookAt.transform.position);
+
+                //yield on a new YieldInstruction that waits for 2 seconds.
+                yield return new WaitForSeconds(2);
+
+
+                rig.PanTo(endLookAt.transform.position);
+
+                yield return null; 
+            }
+                
+			
+
+            
+        }
+
+    }
 }
