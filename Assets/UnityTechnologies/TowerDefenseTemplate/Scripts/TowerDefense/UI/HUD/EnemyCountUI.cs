@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace TowerDefense.UI.HUD
 {
     /// <summary>
-    /// A class for displaying the wave feedback
+    /// A class for displaying the enemy feedback
     /// </summary>
     [RequireComponent(typeof(Canvas))]
     public class EnemyCountUI : MonoBehaviour
@@ -24,16 +24,11 @@ namespace TowerDefense.UI.HUD
 
         protected Canvas m_Canvas;
 
-        /// <summary>
-        /// cache the total amount of waves
-        /// Update the display 
-        /// and Subscribe to waveChanged
-        /// </summary>
+   
         protected virtual void Start()
         {
             m_Canvas = GetComponent<Canvas>();
-            //m_Canvas.enabled = false;
-            //TotalEnemies = LevelManager.instance.numberOfEnemies;
+           
             
         }
 
@@ -43,7 +38,7 @@ namespace TowerDefense.UI.HUD
         }
 
         /// <summary>
-        /// Write the current wave amount to the display
+        /// Write the current enemy amount to the display
         /// </summary>
         protected void UpdateDisplay()
         {
@@ -55,15 +50,6 @@ namespace TowerDefense.UI.HUD
 
        
 
-        /// <summary>
-        /// Unsubscribe from events
-        /// </summary>
-        //protected void OnDestroy()
-        //{
-        //    if (LevelManager.instanceExists)
-        //    {
-        //        LevelManager.instance.waveManager.waveChanged -= UpdateDisplay;
-        //    }
-        //}
+        
     }
 }
