@@ -1594,6 +1594,7 @@ MonoBehaviour:
   dimensions: {fileID: 0}
   upgradeCost: {fileID: 114866793945417814}
   sellPrice: {fileID: 114273590324288892}
+  moveCost: {fileID: 3259227172533100120}
 --- !u!223 &223991189361826780
 Canvas:
   m_ObjectHideFlags: 0
@@ -2299,7 +2300,7 @@ GameObject:
   - component: {fileID: 5923151724465522266}
   - component: {fileID: 8134807934604001573}
   m_Layer: 5
-  m_Name: PlusText
+  m_Name: MinusText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2366,7 +2367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: +
+  m_Text: '-'
 --- !u!1 &2484373844348479130
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,7 +2687,7 @@ GameObject:
   - component: {fileID: 2351650892603828261}
   - component: {fileID: 1416225693128849754}
   m_Layer: 5
-  m_Name: SellText
+  m_Name: MoveText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

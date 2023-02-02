@@ -79,6 +79,14 @@ namespace TowerDefense.Towers
 		}
 
 		/// <summary>
+		/// The moving cost of the tower
+		/// </summary>
+		public int purchaseMoveCost
+		{
+			get { return levels[0].moveCost; }
+		}
+
+		/// <summary>
 		/// The event that fires off when a player deletes a tower
 		/// </summary>
 		public Action towerDeleted;

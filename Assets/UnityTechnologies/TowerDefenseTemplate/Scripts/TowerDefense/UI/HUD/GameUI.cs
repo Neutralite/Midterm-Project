@@ -181,8 +181,6 @@ namespace TowerDefense.UI.HUD
 		/// </summary>
 		public Tower towerToMove { get; private set; }
 
-		public GameObject towerThatIsMovings;
-
         /// <summary>
         /// Gets whether a tower has been selected
         /// </summary>
@@ -509,6 +507,11 @@ namespace TowerDefense.UI.HUD
 			}
 			DeselectTower();
 		}
+
+		/// <summary>
+		/// Buys the ability for <see cref="currentSelectedTower" /> to move if possible.
+		/// Hides the tower UI and build info UI.
+		/// </summary>
 		public void MoveSelectedTower()
 		{
 			if (state != State.Normal)
@@ -519,16 +522,18 @@ namespace TowerDefense.UI.HUD
 			{
 				throw new InvalidOperationException("Selected Tower is null");
 			}
-			int sellValue = currentSelectedTower.GetSellLevel();
-			if (LevelManager.instanceExists && sellValue > 0)
-			{
-				LevelManager.instance.currency.AddCurrency(sellValue);
 
+            int moveCost = currentSelectedTower.purchaseMoveCost;
+			bool successfulPurchase = LevelManager.instance.currency.TryPurchase(moveCost);
+
+			if (successfulPurchase)
+			{
 				previousTower = currentSelectedTower;
 				currentSelectedTower.hasMoved = true;
 				SetToBuildMode(previousTower);
-            }
-			DeselectTower();
+				towerUI.Hide();
+				buildInfoUI.Hide();
+			}
         }
 
 		/// <summary>
