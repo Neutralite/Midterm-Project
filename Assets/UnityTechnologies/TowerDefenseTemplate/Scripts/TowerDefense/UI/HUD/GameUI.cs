@@ -11,10 +11,10 @@ using UnityEngine.EventSystems;
 
 namespace TowerDefense.UI.HUD
 {
-	/// <summary>
-	/// A game UI wrapper for a pointer that also contains raycast information
-	/// </summary>
-	public struct UIPointer
+    /// <summary>
+    /// A game UI wrapper for a pointer that also contains raycast information
+    /// </summary>
+    public struct UIPointer
 	{
 		/// <summary>
 		/// The pointer info
@@ -147,7 +147,7 @@ namespace TowerDefense.UI.HUD
 		IPlacementArea m_CurrentArea;
 
 		/// <summary>
-		/// Grid position ghost tower in on
+		/// Grid position ghost tower is on
 		/// </summary>
 		IntVector2 m_GridPosition;
 
@@ -159,7 +159,12 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Current tower placeholder. Will be null if not in the <see cref="State.Building" /> state.
 		/// </summary>
-		TowerPlacementGhost m_CurrentTower;
+		[SerializeField] TowerPlacementGhost m_CurrentTower;
+
+		/// <summary>
+		/// Holds the towers previous position to clear when a Tower is moved.
+		/// </summary>
+		[SerializeField] Tower previousTower;
 
 		/// <summary>
 		/// Tracks if the ghost is in a valid location and the player can afford it
@@ -172,9 +177,14 @@ namespace TowerDefense.UI.HUD
 		public Tower currentSelectedTower { get; private set; }
 
 		/// <summary>
-		/// Gets whether a tower has been selected
+		/// Tower that will be moved in the move tower function
 		/// </summary>
-		public bool isTowerSelected
+		public Tower towerToMove { get; private set; }
+
+        /// <summary>
+        /// Gets whether a tower has been selected
+        /// </summary>
+        public bool isTowerSelected
 		{
 			get { return currentSelectedTower != null; }
 		}
@@ -331,7 +341,7 @@ namespace TowerDefense.UI.HUD
 			}
 			SetUpGhostTower(towerToBuild);
 			SetState(State.BuildingWithDrag);
-		}
+        }
 
 		/// <summary>
 		/// Sets the UI into a build state for a given tower
@@ -499,6 +509,34 @@ namespace TowerDefense.UI.HUD
 		}
 
 		/// <summary>
+		/// Buys the ability for <see cref="currentSelectedTower" /> to move if possible.
+		/// Hides the tower UI and build info UI.
+		/// </summary>
+		public void MoveSelectedTower()
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to sell tower whilst not in Normal state");
+			}
+			if (currentSelectedTower == null)
+			{
+				throw new InvalidOperationException("Selected Tower is null");
+			}
+
+            int moveCost = currentSelectedTower.purchaseMoveCost;
+			bool successfulPurchase = LevelManager.instance.currency.TryPurchase(moveCost);
+
+			if (successfulPurchase)
+			{
+				previousTower = currentSelectedTower;
+				currentSelectedTower.hasMoved = true;
+				SetToBuildMode(previousTower);
+				towerUI.Hide();
+				buildInfoUI.Hide(); 
+			}
+        }
+
+		/// <summary>
 		/// Buys the tower and places it in the place that it currently is
 		/// </summary>
 		/// <exception cref="InvalidOperationException">
@@ -545,10 +583,17 @@ namespace TowerDefense.UI.HUD
 				CancelGhostPlacement();
 				return;
 			}
-			int cost = m_CurrentTower.controller.purchaseCost;
-			bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
-			if (successfulPurchase)
-			{
+			if(!m_CurrentTower.controller.hasMoved)
+            {
+				int cost = m_CurrentTower.controller.purchaseCost;
+				bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
+				if (successfulPurchase)
+				{
+					PlaceGhost(pointer);
+				}
+			}
+			else
+            {
 				PlaceGhost(pointer);
 			}
 		}
@@ -595,10 +640,15 @@ namespace TowerDefense.UI.HUD
 			{
 				return false;
 			}
-			if (m_CurrentArea == null)
+            if (m_CurrentArea == null)
 			{
 				return false;
 			}
+			// If the platform doesn't have the same tag as the gameobject don't place it.
+			if (!m_CurrentArea.gameObject.CompareTag(m_CurrentTower.gameObject.tag))
+            {
+				return false;
+            }
 			TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 			return fits == TowerFitStatus.Fits;
 		}
@@ -637,6 +687,7 @@ namespace TowerDefense.UI.HUD
 		/// </exception>
 		public void PlaceTower()
 		{
+			
 			if ( !isBuilding )
 			{
 				throw new InvalidOperationException("Trying to place tower when not in a Build Mode");
@@ -649,11 +700,11 @@ namespace TowerDefense.UI.HUD
 			{
 				return;
 			}
-			Tower createdTower = Instantiate(m_CurrentTower.controller);
-			createdTower.Initialize(m_CurrentArea, m_GridPosition);
+            Tower createdTower = Instantiate(m_CurrentTower.controller);
+            createdTower.Initialize(m_CurrentArea, m_GridPosition);
 
-			CancelGhostPlacement();
-		}
+            CancelGhostPlacement();
+        }
 
 		/// <summary>
 		/// Calculates whether the given pointer is over the current tower ghost
@@ -941,12 +992,21 @@ namespace TowerDefense.UI.HUD
 
 				if (fits == TowerFitStatus.Fits)
 				{
-					// Place the ghost
-					Tower controller = m_CurrentTower.controller;
+                    // Place the ghost if it hasn't been moved
+                    Tower controller = m_CurrentTower.controller;
+					if(controller.hasMoved == false)
+                    {
+						Tower createdTower = Instantiate(controller);
 
-					Tower createdTower = Instantiate(controller);
-					createdTower.Initialize(m_CurrentArea, m_GridPosition);
-
+						createdTower.Initialize(m_CurrentArea, m_GridPosition);
+					}
+					 // Move ghost
+					else
+                    {
+						controller.hasMoved = false;
+						previousTower.ClearPlacementArea();
+						controller.transform.position = m_CurrentTower.transform.position;
+					}
 					CancelGhostPlacement();
 				}
 			}

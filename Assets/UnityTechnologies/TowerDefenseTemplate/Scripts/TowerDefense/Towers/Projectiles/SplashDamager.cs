@@ -1,6 +1,7 @@
 ﻿using ActionGameFramework.Health;
 using Core.Health;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TowerDefense.Towers.Projectiles
 {
@@ -9,6 +10,7 @@ namespace TowerDefense.Towers.Projectiles
 	/// </summary>
 	public class SplashDamager : MonoBehaviour
 	{
+		public bool isBomb;
 		/// <summary>
 		/// The Area this projectile will attack in
 		/// </summary>
@@ -23,6 +25,8 @@ namespace TowerDefense.Towers.Projectiles
 		/// The physics layer mask to search on
 		/// </summary>
 		public LayerMask mask = -1;
+
+		public UnityEvent Death;
 
 		/// <summary>
 		/// The alignment of the projectile
@@ -60,6 +64,12 @@ namespace TowerDefense.Towers.Projectiles
 					continue;
 				}
 				damageable.TakeDamage(damageAmount, damageable.position, alignmentProvider);
+
+				//If object is a bomb destroy it on collision.
+				if (isBomb)
+                {
+					Death?.Invoke();
+                }
 			}
 		}
 	}

@@ -27,5 +27,10 @@ namespace Core.Game
 		/// The name of the scene to load
 		/// </summary>
 		public string sceneName;
+
+		/// <summary>
+		/// Whether or not the level is locked
+		/// </summary>
+		public bool levelLocked;
 	}
 }
