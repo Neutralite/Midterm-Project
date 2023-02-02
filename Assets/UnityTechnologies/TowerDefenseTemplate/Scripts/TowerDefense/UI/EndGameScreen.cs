@@ -201,14 +201,20 @@ namespace TowerDefense.UI
 			GameManager gm = GameManager.instance;
 			LevelItem item = gm.GetLevelForCurrentScene();
 			LevelList list = gm.levelList;
+
 			int levelCount = list.Count;
 			int index = -1;
 			for (int i = 0; i < levelCount; i++)
 			{
+
 				if (item == list[i])
 				{
 					index = i;
-					break;
+
+                    //unlock next level
+                    item = list[i + 1];
+                    item.levelLocked = false;
+                    break;
 				}
 			}
 			//if the level does not exist or this is the last level

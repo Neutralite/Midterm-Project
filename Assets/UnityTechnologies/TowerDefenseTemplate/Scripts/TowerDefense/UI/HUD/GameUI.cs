@@ -147,7 +147,7 @@ namespace TowerDefense.UI.HUD
 		IPlacementArea m_CurrentArea;
 
 		/// <summary>
-		/// Grid position ghost tower in on
+		/// Grid position ghost tower is on
 		/// </summary>
 		IntVector2 m_GridPosition;
 
@@ -595,10 +595,15 @@ namespace TowerDefense.UI.HUD
 			{
 				return false;
 			}
-			if (m_CurrentArea == null)
+            if (m_CurrentArea == null)
 			{
 				return false;
 			}
+			// If the platform doesn't have the same tag as the gameobject don't place it.
+			if (!m_CurrentArea.gameObject.CompareTag(m_CurrentTower.gameObject.tag))
+            {
+				return false;
+            }
 			TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 			return fits == TowerFitStatus.Fits;
 		}

@@ -39,8 +39,8 @@ namespace TowerDefense.Towers.Projectiles
 
 		void OnCollisionEnter(Collision other)
 		{
-			ReturnToPool();
-		}
+            ReturnToPool();
+        }
 
 		/// <summary>
 		/// Returns the object to pool if possible, otherwise destroys
