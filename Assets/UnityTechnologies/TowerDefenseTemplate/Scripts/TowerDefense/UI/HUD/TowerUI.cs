@@ -34,6 +34,11 @@ namespace TowerDefense.UI.HUD
 		public Button upgradeButton;
 
 		/// <summary>
+		///  The attached move tower button
+		/// </summary>
+		public Button moveButton;
+
+		/// <summary>
 		/// Component to display the relevant information of the tower
 		/// </summary>
 		public TowerInfoDisplay towerInfoDisplay;
@@ -78,6 +83,11 @@ namespace TowerDefense.UI.HUD
 			if (sellButton != null)
 			{
 				sellButton.gameObject.SetActive(sellValue > 0);
+			}
+			// Add move amount instead
+			if (moveButton != null)
+			{
+				moveButton.gameObject.SetActive(sellValue > 0);
 			}
 			if (upgradeButton != null)
 			{
@@ -127,6 +137,11 @@ namespace TowerDefense.UI.HUD
 		public void SellButtonClick()
 		{
 			GameUI.instance.SellSelectedTower();
+		}
+
+		public void MoveTowerButtonClick()
+        {
+			GameUI.instance.MoveSelectedTower();
 		}
 
 		/// <summary>

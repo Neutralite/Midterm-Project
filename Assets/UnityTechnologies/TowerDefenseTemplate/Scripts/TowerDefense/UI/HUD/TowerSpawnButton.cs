@@ -148,13 +148,11 @@ namespace TowerDefense.UI.HUD
 			// Enable button
 			if (m_Currency.CanAfford(m_Tower.purchaseCost))
 			{
-				//buyButton.interactable = true;
 				energyIcon.color = energyDefaultColor;
                 buyButton.image.color = defaultBuyButtonColor;
             }
 			else if (!m_Currency.CanAfford(m_Tower.purchaseCost))
 			{
-				//buyButton.interactable = true;
 				energyIcon.color = energyInvalidColor;
 				buyButton.image.color = energyInvalidColor;
             }

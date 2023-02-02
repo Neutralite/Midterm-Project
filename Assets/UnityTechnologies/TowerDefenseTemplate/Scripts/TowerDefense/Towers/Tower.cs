@@ -51,6 +51,7 @@ namespace TowerDefense.Towers
 			get { return currentLevel == levels.Length - 1; }
 		}
 
+		public bool hasMoved = false;
 		/// <summary>
 		/// Gets the first level tower ghost prefab
 		/// </summary>
@@ -75,6 +76,14 @@ namespace TowerDefense.Towers
 		public int purchaseCost
 		{
 			get { return levels[0].cost; }
+		}
+
+		/// <summary>
+		/// The moving cost of the tower
+		/// </summary>
+		public int purchaseMoveCost
+		{
+			get { return levels[0].moveCost; }
 		}
 
 		/// <summary>
@@ -216,10 +225,15 @@ namespace TowerDefense.Towers
 			Remove();
 		}
 
-		/// <summary>
-		/// Removes tower from placement area and destroys it
-		/// </summary>
-		public override void Remove()
+        public void ClearPlacementArea()
+        {
+			placementArea.Clear(gridPosition, dimensions);
+        }
+
+        /// <summary>
+        /// Removes tower from placement area and destroys it
+        /// </summary>
+        public override void Remove()
 		{
 			base.Remove();
 			
