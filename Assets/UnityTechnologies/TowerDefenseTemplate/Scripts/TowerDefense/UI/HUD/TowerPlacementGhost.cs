@@ -135,18 +135,21 @@ namespace TowerDefense.UI.HUD
 		/// </summary>
 		protected virtual void Update()
 		{
-			Vector3 currentPos = transform.position;
+            transform.position = m_TargetPosition;
+            
+			//Vector3 currentPos = transform.position;
 
-			if (Vector3.SqrMagnitude(currentPos - m_TargetPosition) > 0.01f)
-			{
-				currentPos = Vector3.SmoothDamp(currentPos, m_TargetPosition, ref m_MoveVel, dampSpeed);
+            //if (Vector3.SqrMagnitude(currentPos - m_TargetPosition) > 0.01f)
+            //{
+            //	currentPos = Vector3.SmoothDamp(currentPos, m_TargetPosition, ref m_MoveVel, dampSpeed);
 
-				transform.position = currentPos;
-			}
-			else
-			{
-				m_MoveVel = Vector3.zero;
-			}
-		}
+            //             transform.position = currentPos;
+
+            //         }
+            //else
+            //{
+            //	m_MoveVel = Vector3.zero;
+            //}
+        }
 	}
 }
