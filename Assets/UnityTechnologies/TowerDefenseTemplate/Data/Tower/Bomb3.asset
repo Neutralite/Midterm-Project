@@ -16,6 +16,7 @@ MonoBehaviour:
   upgradeDescription: +3 range +2 damage
   cost: 15
   sell: 3
+  moveCost: 6
   maxHealth: 1
   startingHealth: 1
   icon: {fileID: 21300000, guid: d6c11b9a43dfb413b86a3ff8908088db, type: 3}
