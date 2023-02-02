@@ -216,10 +216,11 @@ namespace TowerDefense.Towers
 			Remove();
 		}
 
-  //      public void Move()
-  //      {
-		//	Remove();
-		//}
+        public void ClearPlacementArea()
+        {
+			placementArea.Clear(gridPosition, dimensions);
+			Destroy(gameObject);
+        }
 
         /// <summary>
         /// Removes tower from placement area and destroys it

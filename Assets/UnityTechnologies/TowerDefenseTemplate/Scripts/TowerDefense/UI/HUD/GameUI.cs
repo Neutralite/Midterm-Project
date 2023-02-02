@@ -545,13 +545,13 @@ namespace TowerDefense.UI.HUD
 				//SellSelectedTower();
 				//Instantiate(currentSelectedTower.towerGhostPrefab);
 
-				//previousTower = currentSelectedTower;
+				previousTower = currentSelectedTower;
 
 
-				//TowerPlacementGhost ghost = currentSelectedTower.towerGhostPrefab;
-				//m_CurrentTower = Instantiate(ghost);
-				//SetToBuildMode(currentSelectedTower);
-				SetToDragMode(currentSelectedTower);
+                //TowerPlacementGhost ghost = currentSelectedTower.towerGhostPrefab;
+                //m_CurrentTower = Instantiate(ghost);
+                //SetToBuildMode(currentSelectedTower);
+                SetToDragMode(currentSelectedTower);
 
 				//SellSelectedTower();
                 //SetToBuildMode(ghost.controller);
@@ -753,6 +753,7 @@ namespace TowerDefense.UI.HUD
 		/// </exception>
 		public void PlaceTower()
 		{
+			
 			if ( !isBuilding )
 			{
 				throw new InvalidOperationException("Trying to place tower when not in a Build Mode");
@@ -1043,6 +1044,7 @@ namespace TowerDefense.UI.HUD
 		/// <exception cref="InvalidOperationException">If we're not in the correct state</exception>
 		protected void PlaceGhost(UIPointer pointer)
 		{
+
 			if (m_CurrentTower == null || !isBuilding)
 			{
 				throw new InvalidOperationException(
@@ -1057,6 +1059,13 @@ namespace TowerDefense.UI.HUD
 
 				if (fits == TowerFitStatus.Fits)
 				{
+					Debug.Log("TowerPlaced");
+					if (previousTower != null)
+                    {
+						previousTower.ClearPlacementArea();
+                        //Destroy(previousTower.gameObject);
+                    }
+
 					// Place the ghost
 					Tower controller = m_CurrentTower.controller;
 
