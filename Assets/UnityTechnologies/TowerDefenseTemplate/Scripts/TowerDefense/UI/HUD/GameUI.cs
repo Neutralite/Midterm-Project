@@ -532,7 +532,7 @@ namespace TowerDefense.UI.HUD
 				currentSelectedTower.hasMoved = true;
 				SetToBuildMode(previousTower);
 				towerUI.Hide();
-				buildInfoUI.Hide();
+				buildInfoUI.Hide(); 
 			}
         }
 
@@ -583,10 +583,17 @@ namespace TowerDefense.UI.HUD
 				CancelGhostPlacement();
 				return;
 			}
-			int cost = m_CurrentTower.controller.purchaseCost;
-			bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
-			if (successfulPurchase)
-			{
+			if(!m_CurrentTower.controller.hasMoved)
+            {
+				int cost = m_CurrentTower.controller.purchaseCost;
+				bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
+				if (successfulPurchase)
+				{
+					PlaceGhost(pointer);
+				}
+			}
+			else
+            {
 				PlaceGhost(pointer);
 			}
 		}
@@ -985,8 +992,6 @@ namespace TowerDefense.UI.HUD
 
 				if (fits == TowerFitStatus.Fits)
 				{
-					Debug.Log("TowerPlaced");
-
                     // Place the ghost if it hasn't been moved
                     Tower controller = m_CurrentTower.controller;
 					if(controller.hasMoved == false)
