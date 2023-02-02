@@ -312,6 +312,7 @@ MonoBehaviour:
   energyIcon: {fileID: 114188670040651154}
   energyDefaultColor: {r: 0.3647059, g: 0.7058824, b: 1, a: 1}
   energyInvalidColor: {r: 1, g: 0.36470592, b: 0.36470592, a: 1}
+  defaultBuyButtonColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114236405066889198
 MonoBehaviour:
   m_ObjectHideFlags: 0
