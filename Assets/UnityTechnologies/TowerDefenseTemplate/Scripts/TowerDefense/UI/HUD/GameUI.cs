@@ -357,7 +357,7 @@ namespace TowerDefense.UI.HUD
 			if (state != State.Normal)
 			{
 				throw new InvalidOperationException("Trying to enter Build mode when not in Normal mode");
-			}
+            }
 			
 			if (m_CurrentTower != null)
 			{
@@ -587,9 +587,17 @@ namespace TowerDefense.UI.HUD
             {
 				int cost = m_CurrentTower.controller.purchaseCost;
 				bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
+				Tower controller = m_CurrentTower.controller;
+
 				if (successfulPurchase)
 				{
 					PlaceGhost(pointer);
+
+					// If you can afford to buy more turrets place another ghost prefab
+					if (LevelManager.instance.currency.CanAfford(cost))
+                    {
+						SetToBuildMode(controller);
+					}
 				}
 			}
 			else
@@ -945,7 +953,6 @@ namespace TowerDefense.UI.HUD
 								m_GhostPlacementPossible);
 		}
 
-
 		/// <summary>
 		/// Move ghost with the given ray
 		/// </summary>
@@ -983,7 +990,6 @@ namespace TowerDefense.UI.HUD
 				throw new InvalidOperationException(
 					"Trying to position a tower ghost while the UI is not currently in a building state.");
 			}
-
 			MoveGhost(pointer);
 
 			if (m_CurrentArea != null)
@@ -997,12 +1003,7 @@ namespace TowerDefense.UI.HUD
 					if(controller.hasMoved == false)
                     {
 						Tower createdTower = Instantiate(controller);
-
 						createdTower.Initialize(m_CurrentArea, m_GridPosition);
-						if(LevelManager.instance.currency.CanAfford(controller.purchaseCost))
-						{
-							SetToBuildMode(controller);
-						}
 					}
 					// Move ghost
 					else
