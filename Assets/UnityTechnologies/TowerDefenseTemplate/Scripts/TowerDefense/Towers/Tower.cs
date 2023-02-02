@@ -51,6 +51,7 @@ namespace TowerDefense.Towers
 			get { return currentLevel == levels.Length - 1; }
 		}
 
+		public bool hasMoved = false;
 		/// <summary>
 		/// Gets the first level tower ghost prefab
 		/// </summary>
@@ -219,7 +220,6 @@ namespace TowerDefense.Towers
         public void ClearPlacementArea()
         {
 			placementArea.Clear(gridPosition, dimensions);
-			Destroy(gameObject);
         }
 
         /// <summary>

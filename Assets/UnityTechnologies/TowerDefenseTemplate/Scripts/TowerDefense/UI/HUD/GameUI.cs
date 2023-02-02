@@ -161,6 +161,9 @@ namespace TowerDefense.UI.HUD
 		/// </summary>
 		[SerializeField] TowerPlacementGhost m_CurrentTower;
 
+		/// <summary>
+		/// Holds the towers previous position to clear when a Tower is moved.
+		/// </summary>
 		[SerializeField] Tower previousTower;
 
 		/// <summary>
@@ -179,8 +182,6 @@ namespace TowerDefense.UI.HUD
 		public Tower towerToMove { get; private set; }
 
 		public GameObject towerThatIsMovings;
-
-		public bool movingTower = false;
 
         /// <summary>
         /// Gets whether a tower has been selected
@@ -341,8 +342,7 @@ namespace TowerDefense.UI.HUD
 				CancelGhostPlacement();
 			}
 			SetUpGhostTower(towerToBuild);
-            SetState(State.BuildingWithDrag);
-
+			SetState(State.BuildingWithDrag);
         }
 
 		/// <summary>
@@ -523,91 +523,13 @@ namespace TowerDefense.UI.HUD
 			if (LevelManager.instanceExists && sellValue > 0)
 			{
 				LevelManager.instance.currency.AddCurrency(sellValue);
-				//SetState(State.Normal);
-				//towerToMove = currentSelectedTower;
-
-				//towerToMove = (Tower)currentSelectedTower.MemberwiseClone();
-
-				//towerToMove = Instantiate(currentSelectedTower);
-				//Instantiate(currentSelectedTower.towerGhostPrefab);
-				//SetUpGhostTower(currentSelectedTower);
-				//currentSelectedTower.Sell();
-				//TryMoveGhost(InputController.instance.basicMouseInfo);
-
-				//SetToDragMode(towerToMove);
-
-
-				//SetToBuildMode(towerToMove);
-				//m_CurrentTower = Instantiate(currentSelectedTower.towerGhostPrefab);
-				//m_CurrentTower.Initialize(currentSelectedTower);
-				//currentSelectedTower.Sell();
-				//SetToDragMode(currentSelectedTower);
-				//SellSelectedTower();
-				//Instantiate(currentSelectedTower.towerGhostPrefab);
 
 				previousTower = currentSelectedTower;
-
-
-                //TowerPlacementGhost ghost = currentSelectedTower.towerGhostPrefab;
-                //m_CurrentTower = Instantiate(ghost);
-                //SetToBuildMode(currentSelectedTower);
-                SetToDragMode(currentSelectedTower);
-
-				//SellSelectedTower();
-                //SetToBuildMode(ghost.controller);
-
-                //SetToDragMode(currentSelectedTower.gameObject.GetComponent<Tower>().towerGhostPrefab.controller);
-                //ReturnToBuildMode();
-
-
-                //TryMoveGhost(InputController.instance.basicMouseInfo);
-                //SetToDragMode(ghost.controller);
-
-                //DeselectTower();
-                //TowerPlacementGhost movingTower = Instantiate(currentSelectedTower.towerGhostPrefab);
-
-
-                //SetToDragMode(m_CurrentTower.GetComponent<TowerPlacementGhost>().controller); 
-
-                //m_CurrentTower.Initialize(towerToBuild);
-
-
-                //previousTower.gameObject.SetActive(false);
-
-                //TowerLevel comp = previousTower.GetComponent<TowerLevel>();
-                //SetUpGhostTower(currentSelectedTower);
-                //            SetToBuildMode(currentSelectedTower);
-                //SetState(State.Normal);
-                //SetToBuildMode(currentSelectedTower);
-                //currentSelectedTower.enabled = true;
-                //DeselectTower();
-                //currentSelectedTower.gameObject.SetActive(true);
-                //previousTower.gameObject.AddComponent(typeof(TowerLevel));
-                //m_CurrentTower = Instantiate(currentSelectedTower.towerGhostPrefab);
-                //m_CurrentTower.Initialize(currentSelectedTower);
-
-
-
-
-                //TryMoveGhost(InputController.instance.basicMouseInfo);
-
-
-                //currentSelectedTower = towerToMove;
-                //SetState(State.BuildingWithDrag);
-                //ChangeToDragMode();
-                //towerThatIsMovings = currentSelectedTower.gameObject;
-                //towerThatIsMovings.SetActive(false);
-
-                //currentSelectedTower = Instantiate(towerToMove);
-                //Instantiate(objectType);
-                //currentSelectedTower = objectType;
-
-                //Destroy(towerToMove.gameObject);
-                //TryMoveGhost(InputController.instance.basicMouseInfo);
-                //SetToDragMode(clone);
+				currentSelectedTower.hasMoved = true;
+				SetToBuildMode(previousTower);
             }
-			//DeselectTower();
-		}
+			DeselectTower();
+        }
 
 		/// <summary>
 		/// Buys the tower and places it in the place that it currently is
@@ -766,11 +688,11 @@ namespace TowerDefense.UI.HUD
 			{
 				return;
 			}
-			Tower createdTower = Instantiate(m_CurrentTower.controller);
-			createdTower.Initialize(m_CurrentArea, m_GridPosition);
+            Tower createdTower = Instantiate(m_CurrentTower.controller);
+            createdTower.Initialize(m_CurrentArea, m_GridPosition);
 
-			CancelGhostPlacement();
-		}
+            CancelGhostPlacement();
+        }
 
 		/// <summary>
 		/// Calculates whether the given pointer is over the current tower ghost
@@ -1044,7 +966,6 @@ namespace TowerDefense.UI.HUD
 		/// <exception cref="InvalidOperationException">If we're not in the correct state</exception>
 		protected void PlaceGhost(UIPointer pointer)
 		{
-
 			if (m_CurrentTower == null || !isBuilding)
 			{
 				throw new InvalidOperationException(
@@ -1060,18 +981,22 @@ namespace TowerDefense.UI.HUD
 				if (fits == TowerFitStatus.Fits)
 				{
 					Debug.Log("TowerPlaced");
-					if (previousTower != null)
+
+                    // Place the ghost if it hasn't been moved
+                    Tower controller = m_CurrentTower.controller;
+					if(controller.hasMoved == false)
                     {
+						Tower createdTower = Instantiate(controller);
+
+						createdTower.Initialize(m_CurrentArea, m_GridPosition);
+					}
+					 // Move ghost
+					else
+                    {
+						controller.hasMoved = false;
 						previousTower.ClearPlacementArea();
-                        //Destroy(previousTower.gameObject);
-                    }
-
-					// Place the ghost
-					Tower controller = m_CurrentTower.controller;
-
-					Tower createdTower = Instantiate(controller);
-					createdTower.Initialize(m_CurrentArea, m_GridPosition);
-
+						controller.transform.position = m_CurrentTower.transform.position;
+					}
 					CancelGhostPlacement();
 				}
 			}
