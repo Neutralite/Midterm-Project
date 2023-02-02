@@ -11,10 +11,10 @@ using UnityEngine.EventSystems;
 
 namespace TowerDefense.UI.HUD
 {
-	/// <summary>
-	/// A game UI wrapper for a pointer that also contains raycast information
-	/// </summary>
-	public struct UIPointer
+    /// <summary>
+    /// A game UI wrapper for a pointer that also contains raycast information
+    /// </summary>
+    public struct UIPointer
 	{
 		/// <summary>
 		/// The pointer info
@@ -159,7 +159,9 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Current tower placeholder. Will be null if not in the <see cref="State.Building" /> state.
 		/// </summary>
-		TowerPlacementGhost m_CurrentTower;
+		[SerializeField] TowerPlacementGhost m_CurrentTower;
+
+		[SerializeField] Tower previousTower;
 
 		/// <summary>
 		/// Tracks if the ghost is in a valid location and the player can afford it
@@ -172,9 +174,18 @@ namespace TowerDefense.UI.HUD
 		public Tower currentSelectedTower { get; private set; }
 
 		/// <summary>
-		/// Gets whether a tower has been selected
+		/// Tower that will be moved in the move tower function
 		/// </summary>
-		public bool isTowerSelected
+		public Tower towerToMove { get; private set; }
+
+		public GameObject towerThatIsMovings;
+
+		public bool movingTower = false;
+
+        /// <summary>
+        /// Gets whether a tower has been selected
+        /// </summary>
+        public bool isTowerSelected
 		{
 			get { return currentSelectedTower != null; }
 		}
@@ -330,8 +341,9 @@ namespace TowerDefense.UI.HUD
 				CancelGhostPlacement();
 			}
 			SetUpGhostTower(towerToBuild);
-			SetState(State.BuildingWithDrag);
-		}
+            SetState(State.BuildingWithDrag);
+
+        }
 
 		/// <summary>
 		/// Sets the UI into a build state for a given tower
@@ -496,6 +508,105 @@ namespace TowerDefense.UI.HUD
 				currentSelectedTower.Sell();
 			}
 			DeselectTower();
+		}
+		public void MoveSelectedTower()
+		{
+			if (state != State.Normal)
+			{
+				throw new InvalidOperationException("Trying to sell tower whilst not in Normal state");
+			}
+			if (currentSelectedTower == null)
+			{
+				throw new InvalidOperationException("Selected Tower is null");
+			}
+			int sellValue = currentSelectedTower.GetSellLevel();
+			if (LevelManager.instanceExists && sellValue > 0)
+			{
+				LevelManager.instance.currency.AddCurrency(sellValue);
+				//SetState(State.Normal);
+				//towerToMove = currentSelectedTower;
+
+				//towerToMove = (Tower)currentSelectedTower.MemberwiseClone();
+
+				//towerToMove = Instantiate(currentSelectedTower);
+				//Instantiate(currentSelectedTower.towerGhostPrefab);
+				//SetUpGhostTower(currentSelectedTower);
+				//currentSelectedTower.Sell();
+				//TryMoveGhost(InputController.instance.basicMouseInfo);
+
+				//SetToDragMode(towerToMove);
+
+
+				//SetToBuildMode(towerToMove);
+				//m_CurrentTower = Instantiate(currentSelectedTower.towerGhostPrefab);
+				//m_CurrentTower.Initialize(currentSelectedTower);
+				//currentSelectedTower.Sell();
+				//SetToDragMode(currentSelectedTower);
+				//SellSelectedTower();
+				//Instantiate(currentSelectedTower.towerGhostPrefab);
+
+				//previousTower = currentSelectedTower;
+
+
+				//TowerPlacementGhost ghost = currentSelectedTower.towerGhostPrefab;
+				//m_CurrentTower = Instantiate(ghost);
+				//SetToBuildMode(currentSelectedTower);
+				SetToDragMode(currentSelectedTower);
+
+				//SellSelectedTower();
+                //SetToBuildMode(ghost.controller);
+
+                //SetToDragMode(currentSelectedTower.gameObject.GetComponent<Tower>().towerGhostPrefab.controller);
+                //ReturnToBuildMode();
+
+
+                //TryMoveGhost(InputController.instance.basicMouseInfo);
+                //SetToDragMode(ghost.controller);
+
+                //DeselectTower();
+                //TowerPlacementGhost movingTower = Instantiate(currentSelectedTower.towerGhostPrefab);
+
+
+                //SetToDragMode(m_CurrentTower.GetComponent<TowerPlacementGhost>().controller); 
+
+                //m_CurrentTower.Initialize(towerToBuild);
+
+
+                //previousTower.gameObject.SetActive(false);
+
+                //TowerLevel comp = previousTower.GetComponent<TowerLevel>();
+                //SetUpGhostTower(currentSelectedTower);
+                //            SetToBuildMode(currentSelectedTower);
+                //SetState(State.Normal);
+                //SetToBuildMode(currentSelectedTower);
+                //currentSelectedTower.enabled = true;
+                //DeselectTower();
+                //currentSelectedTower.gameObject.SetActive(true);
+                //previousTower.gameObject.AddComponent(typeof(TowerLevel));
+                //m_CurrentTower = Instantiate(currentSelectedTower.towerGhostPrefab);
+                //m_CurrentTower.Initialize(currentSelectedTower);
+
+
+
+
+                //TryMoveGhost(InputController.instance.basicMouseInfo);
+
+
+                //currentSelectedTower = towerToMove;
+                //SetState(State.BuildingWithDrag);
+                //ChangeToDragMode();
+                //towerThatIsMovings = currentSelectedTower.gameObject;
+                //towerThatIsMovings.SetActive(false);
+
+                //currentSelectedTower = Instantiate(towerToMove);
+                //Instantiate(objectType);
+                //currentSelectedTower = objectType;
+
+                //Destroy(towerToMove.gameObject);
+                //TryMoveGhost(InputController.instance.basicMouseInfo);
+                //SetToDragMode(clone);
+            }
+			//DeselectTower();
 		}
 
 		/// <summary>

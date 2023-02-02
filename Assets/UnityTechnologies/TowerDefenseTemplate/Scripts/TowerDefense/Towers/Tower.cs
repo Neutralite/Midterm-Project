@@ -216,10 +216,15 @@ namespace TowerDefense.Towers
 			Remove();
 		}
 
-		/// <summary>
-		/// Removes tower from placement area and destroys it
-		/// </summary>
-		public override void Remove()
+  //      public void Move()
+  //      {
+		//	Remove();
+		//}
+
+        /// <summary>
+        /// Removes tower from placement area and destroys it
+        /// </summary>
+        public override void Remove()
 		{
 			base.Remove();
 			
