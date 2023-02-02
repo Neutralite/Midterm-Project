@@ -9600,7 +9600,7 @@ MonoBehaviour:
   description: Energy
   currencyGainer:
     constantCurrencyAddition: 1
-    constantCurrencyGainRate: 0.125
+    constantCurrencyGainRate: 0.5
   descriptionFormat: <b>Produces</b> {0} at {1} units per second
   audioSource: {fileID: 82752836697949906}
   currencyParticleSystem: {fileID: 198194196270088828}
