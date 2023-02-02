@@ -999,8 +999,12 @@ namespace TowerDefense.UI.HUD
 						Tower createdTower = Instantiate(controller);
 
 						createdTower.Initialize(m_CurrentArea, m_GridPosition);
+						if(LevelManager.instance.currency.CanAfford(controller.purchaseCost))
+						{
+							SetToBuildMode(controller);
+						}
 					}
-					 // Move ghost
+					// Move ghost
 					else
                     {
 						controller.hasMoved = false;
