@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4064439936423624}
   - component: {fileID: 114572677471174774}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Barrier_0
   m_TagString: RoadPlacement
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114438, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_TagString
@@ -71,7 +71,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 126890, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 126890, guid: 5f1bb2cacf6d4ca4c878049b803fd391, type: 3}
       propertyPath: m_TagString
