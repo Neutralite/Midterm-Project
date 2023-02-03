@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Level_5_Ability Library
   m_EditorClassIdentifier: 
   configurations:
+  - {fileID: -6636037521906756547, guid: cb10c0f40a1db0a41ab28d51e65ff34a, type: 3}
   - {fileID: 8298234938228208138, guid: a71b545c70444634b84383b9ed7610bb, type: 3}

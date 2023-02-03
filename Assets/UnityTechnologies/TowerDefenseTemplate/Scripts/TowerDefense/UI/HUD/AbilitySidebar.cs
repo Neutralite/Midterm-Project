@@ -5,7 +5,7 @@ using UnityEngine;
 namespace TowerDefense.UI.HUD
 {
     /// <summary>
-    /// UI component that displays towers that can be built on this level.
+    /// UI component that displays abilities that can be built on this level.
     /// </summary>
     public class AbilitySidebar : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace TowerDefense.UI.HUD
         public AbilityCallButton abilityCallButton;
 
         /// <summary>
-        /// Initialize the tower spawn buttons
+        /// Initialize the abilities spawn buttons
         /// </summary>
         protected virtual void Start()
         {
@@ -44,7 +44,7 @@ namespace TowerDefense.UI.HUD
         /// <summary>
         /// Activate ability
         /// </summary>
-        /// <param name="towerData"></param>
+        /// <param name="Ability"></param>
         void OnButtonDraggedOff(Ability ability)
         {
             ability.ActivateAbility();

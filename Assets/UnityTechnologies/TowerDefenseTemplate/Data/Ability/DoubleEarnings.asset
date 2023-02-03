@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5e553af4ca50af4e9489699fd95cfac, type: 3}
-  m_Name: PowerDoubler
+  m_Name: DoubleEarnings
   m_EditorClassIdentifier: 
   description: Doubles energy earned from defeating enemies
-  cost: 20
+  cost: 10
   duration: 10
   cooldown: 10
   icon: {fileID: 21300000, guid: 8de2b0ca8a36944a9b9dd75dff42644f, type: 3}

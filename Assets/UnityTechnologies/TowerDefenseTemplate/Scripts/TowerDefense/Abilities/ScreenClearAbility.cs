@@ -19,7 +19,6 @@ namespace TowerDefense.Abilities
 
         public override void Update()
         {
-            Debug.Log("a");
             if (currentDuration > 0)
             {
                 for (int i = 0; i < LevelManager.instance.activeAgents.Count; i++)

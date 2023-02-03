@@ -45,7 +45,7 @@ namespace TowerDefense.UI.HUD
         /// <summary>
         /// The ability controller that defines the button
         /// </summary>
-        public Ability m_Ability;
+        Ability m_Ability;
 
 		/// <summary>
 		/// Cached reference to level currency
@@ -146,12 +146,12 @@ namespace TowerDefense.UI.HUD
 			}
 
 			// Enable button
-			if (m_Currency.CanAfford(m_Ability.cost))
+			if (m_Currency.CanAfford(m_Ability.cost) && m_Ability.currentCooldown == 0)
 			{
 				energyIcon.color = energyDefaultColor;
                 buyButton.image.color = defaultBuyButtonColor;
             }
-			else if (!m_Currency.CanAfford(m_Ability.cost))
+			else if (!m_Currency.CanAfford(m_Ability.cost) || m_Ability.currentCooldown != 0)
 			{
 				energyIcon.color = energyInvalidColor;
 				buyButton.image.color = energyInvalidColor;
