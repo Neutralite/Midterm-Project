@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Abilities.Data;
@@ -10,7 +11,7 @@ namespace TowerDefense.Abilities
     /// <summary>
     /// Common functionality for all types of abilities
     /// </summary>
-    public class Ability : MonoBehaviour
+    public abstract class Ability : MonoBehaviour
     {
         /// <summary>
         /// Reference to scriptable object with ability data on it
@@ -67,6 +68,11 @@ namespace TowerDefense.Abilities
             get { return abilityData.icon; }
         }
 
+        /// <summary>
+        /// Occurs when cooldown changed.
+        /// </summary>
+        public event Action cooldownChanged;
+
         public void ActivateAbility()
         {
             if(currentCooldown == 0)
@@ -75,13 +81,29 @@ namespace TowerDefense.Abilities
                 {
                     currentDuration = duration;
                     currentCooldown = cooldown;
+                    cooldownChanged();
                 }
             }
         }
-        public virtual void Update()
+        public void DurationCooldownDecrease()
         {
-            currentDuration = currentDuration > 0 ? currentDuration-Time.deltaTime : 0;
-            currentCooldown = currentCooldown > 0 ? currentCooldown-Time.deltaTime : 0;
+            if (currentDuration > 0)
+            {
+                currentDuration -= Time.deltaTime;
+            }
+            else if (currentDuration != 0)
+            {
+                currentDuration = 0;
+            }
+            if (currentCooldown > 0)
+            {
+                currentCooldown -= Time.deltaTime;
+            }
+            else if (currentCooldown != 0)
+            {
+                currentCooldown = 0;
+                cooldownChanged();
+            }
         }
     }
 }

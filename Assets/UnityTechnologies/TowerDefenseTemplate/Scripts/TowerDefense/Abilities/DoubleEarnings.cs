@@ -9,7 +9,7 @@ namespace TowerDefense.Abilities
     public class DoubleEarnings : Ability
     {
         public int lootMultiplier;
-        public override void Update()
+        public void Update()
         {
             if (currentDuration > 0)
             {
@@ -35,10 +35,9 @@ namespace TowerDefense.Abilities
                         temp.GetComponent<LootDrop>().lootDropped /= lootMultiplier;
                         temp.GetComponent<LootDrop>().lootDoubled = false;
                     }
-
                 }
             }
-            base.Update();
+            DurationCooldownDecrease();
         }
     }
 }
