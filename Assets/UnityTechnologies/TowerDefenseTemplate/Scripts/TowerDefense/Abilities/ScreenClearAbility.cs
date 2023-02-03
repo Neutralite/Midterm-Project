@@ -17,7 +17,7 @@ namespace TowerDefense.Abilities
             get { return alignment != null ? alignment.GetInterface() : null; }
         }
 
-        public override void Update()
+        public void Update()
         {
             if (currentDuration > 0)
             {
@@ -25,10 +25,9 @@ namespace TowerDefense.Abilities
                 {
                     Agent temp = LevelManager.instance.activeAgents[i];
                     temp.TakeDamage(temp.configuration.currentHealth, temp.position, alignmentProvider);
-                
                 }
             }
-            base.Update();
+            DurationCooldownDecrease();
         }
     }
 }

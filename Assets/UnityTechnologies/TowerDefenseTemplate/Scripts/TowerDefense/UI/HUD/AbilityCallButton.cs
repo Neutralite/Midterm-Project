@@ -87,6 +87,7 @@ namespace TowerDefense.UI.HUD
 				buttonText.text = abilityData.cost.ToString();
 				abilityIcon.sprite = abilityData.icon;
 				m_Ability = Instantiate(m_Ability,transform);
+				m_Ability.cooldownChanged += UpdateButton;
 			}
 			else
 			{
@@ -121,7 +122,8 @@ namespace TowerDefense.UI.HUD
 			if (m_Currency != null)
 			{
 				m_Currency.currencyChanged -= UpdateButton;
-			}
+                m_Ability.cooldownChanged -= UpdateButton;
+            }
 		}
 
 		/// <summary>
