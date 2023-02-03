@@ -16,4 +16,4 @@ MonoBehaviour:
   cost: 10
   duration: 10
   cooldown: 10
-  icon: {fileID: 21300000, guid: 8de2b0ca8a36944a9b9dd75dff42644f, type: 3}
+  icon: {fileID: 21300000, guid: 8340dd276ac10407998477cdeba7352c, type: 3}
