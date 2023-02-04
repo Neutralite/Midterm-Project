@@ -19,4 +19,4 @@ MonoBehaviour:
   moveCost: 2
   maxHealth: 5
   startingHealth: 5
-  icon: {fileID: 21300000, guid: 513d334ef78544f129afabc1ad5af28b, type: 3}
+  icon: {fileID: 21300000, guid: 4908fc8d0d0b3445eb9eef9db5e52125, type: 3}
