@@ -503,6 +503,8 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   levels:
   - {fileID: 114572677471174774, guid: 4e77fb63b1ceb9d4499491d2e761a0fe, type: 3}
+  - {fileID: 114572677471174774, guid: 4cd0d32106e465d409a951c90006d2de, type: 3}
+  - {fileID: 114572677471174774, guid: 2220c8458cb296346b3458ffe41267bf, type: 3}
   towerName: Barrier
   dimensions:
     x: 1
@@ -510,6 +512,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
+  hasMoved: 0
 --- !u!114 &114889417632013692
 MonoBehaviour:
   m_ObjectHideFlags: 0
