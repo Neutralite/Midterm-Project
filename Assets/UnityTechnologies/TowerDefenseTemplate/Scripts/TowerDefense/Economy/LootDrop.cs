@@ -15,6 +15,8 @@ namespace TowerDefense.Economy
 		/// </summary>
 		public int lootDropped = 1;
 
+		public bool lootDoubled;
+
 		/// <summary>
 		/// The attached DamagableBehaviour
 		/// </summary>

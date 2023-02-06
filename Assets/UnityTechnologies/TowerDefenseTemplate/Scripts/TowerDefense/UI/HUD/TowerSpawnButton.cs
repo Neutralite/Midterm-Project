@@ -29,6 +29,8 @@ namespace TowerDefense.UI.HUD
 		
 		public Color energyInvalidColor;
 
+		public Color defaultBuyButtonColor;
+
 		/// <summary>
 		/// Fires when the button is tapped
 		/// </summary>
@@ -144,16 +146,16 @@ namespace TowerDefense.UI.HUD
 			}
 
 			// Enable button
-			if (m_Currency.CanAfford(m_Tower.purchaseCost) && !buyButton.interactable)
+			if (m_Currency.CanAfford(m_Tower.purchaseCost))
 			{
-				buyButton.interactable = true;
 				energyIcon.color = energyDefaultColor;
-			}
-			else if (!m_Currency.CanAfford(m_Tower.purchaseCost) && buyButton.interactable)
+                buyButton.image.color = defaultBuyButtonColor;
+            }
+			else if (!m_Currency.CanAfford(m_Tower.purchaseCost))
 			{
-				buyButton.interactable = false;
 				energyIcon.color = energyInvalidColor;
-			}
+				buyButton.image.color = energyInvalidColor;
+            }
 		}
 	}
 }

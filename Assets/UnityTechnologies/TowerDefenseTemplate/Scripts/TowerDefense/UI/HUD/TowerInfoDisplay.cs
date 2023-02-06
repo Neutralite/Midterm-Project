@@ -50,6 +50,11 @@ namespace TowerDefense.UI.HUD
 		public Text sellPrice;
 
 		/// <summary>
+		///  The text component for the move cost
+		/// </summary>
+		public Text moveCost;
+
+		/// <summary>
 		/// Draws the tower data on to the canvas, if the relevant text components are populated
 		/// </summary>
 		/// <param name="tower">
@@ -85,7 +90,10 @@ namespace TowerDefense.UI.HUD
 			}
 
 			int sellValue = tower.GetSellLevel(levelOfTower);
+			int moveValue = tower.purchaseMoveCost;
+
 			DisplayText(sellPrice, sellValue.ToString());
+			DisplayText(moveCost, moveValue.ToString());
 		}
 
 		/// <summary>

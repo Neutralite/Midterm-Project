@@ -11,11 +11,14 @@ namespace TowerDefense.Towers.Data
 		/// <summary>
 		/// A description of the tower for displaying on the UI
 		/// </summary>
+		/// 
+		[TextArea(3, 15)]
 		public string description;
 
 		/// <summary>
 		/// A description of the tower for displaying on the UI
 		/// </summary>
+		[TextArea(3, 15)]
 		public string upgradeDescription;
 
 		/// <summary>
@@ -29,8 +32,14 @@ namespace TowerDefense.Towers.Data
 		public int sell;
 
 		/// <summary>
+		/// The move cost of the tower
+		/// </summary>
+		public int moveCost;
+
+		/// <summary>
 		/// The max health
 		/// </summary>
+		
 		public int maxHealth;
 
 		/// <summary>
