@@ -11,7 +11,7 @@ namespace Core.Input
 		/// <summary>
 		/// Pan threshold (how near to the edge before we pan. Also the denominator for RMB pan)
 		/// </summary>
-		public float screenPanThreshold = 40f;
+		public float screenPanThreshold = 0f;
 
 		/// <summary>
 		/// Pan speed for edge panning

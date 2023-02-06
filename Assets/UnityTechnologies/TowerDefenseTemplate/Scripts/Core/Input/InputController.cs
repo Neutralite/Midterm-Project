@@ -42,7 +42,7 @@ namespace Core.Input
 		/// <summary>
 		/// Sensitivity of mouse-wheel based zoom
 		/// </summary>
-		public float mouseWheelSensitivity = 1.0f;
+		public float mouseWheelSensitivity = 5.0f;
 
 		/// <summary>
 		/// How many mouse buttons to track
