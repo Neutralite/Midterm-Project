@@ -121,7 +121,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6562640, guid: 8a553ddeee5519c42beedf0a1b69da88, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8a553ddeee5519c42beedf0a1b69da88, type: 3}
 --- !u!4 &7674853946323365714 stripped
 Transform:
@@ -169,3 +170,17 @@ MonoBehaviour:
   alignment:
     unityObjectReference: {fileID: 11400000, guid: 2e20cdb38c63f4edf8ee385c50c089ce,
       type: 2}
+--- !u!64 &240658151993827892
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7674853946323428736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
