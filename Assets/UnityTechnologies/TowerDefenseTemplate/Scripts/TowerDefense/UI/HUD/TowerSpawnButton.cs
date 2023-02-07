@@ -41,11 +41,22 @@ namespace TowerDefense.UI.HUD
 		/// and still down
 		/// </summary>
 		public event Action<Tower> draggedOff;
-		
-		/// <summary>
-		/// The tower controller that defines the button
-		/// </summary>
-		Tower m_Tower;
+
+        /// <summary>
+        /// Fires when the button is hovered over
+        /// </summary>
+        public event Action<Tower> buttonHover;
+
+        /// <summary>
+        /// Fires when the pointer isn't hovering over the button
+        /// and still down
+        /// </summary>
+        public event Action buttonUnhover;
+
+        /// <summary>
+        /// The tower controller that defines the button
+        /// </summary>
+        Tower m_Tower;
 
 		/// <summary>
 		/// Cached reference to level currency
@@ -135,10 +146,26 @@ namespace TowerDefense.UI.HUD
 			}
 		}
 
-		/// <summary>
-		/// Update the button's button state based on cost
-		/// </summary>
-		void UpdateButton()
+        /// <summary>
+        /// For when the button is hovered over
+        /// </summary>
+        public void OnHover()
+        {
+			buttonHover(m_Tower);
+        }
+
+        /// <summary>
+        /// For when the button is not hovered over
+        /// </summary>
+        public void OnUnhover()
+        {
+			buttonUnhover();
+        }
+
+        /// <summary>
+        /// Update the button's button state based on cost
+        /// </summary>
+        void UpdateButton()
 		{
 			if (m_Currency == null)
 			{

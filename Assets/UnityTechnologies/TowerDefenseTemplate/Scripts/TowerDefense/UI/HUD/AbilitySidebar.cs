@@ -13,6 +13,8 @@ namespace TowerDefense.UI.HUD
         /// The prefab spawned for each button
         /// </summary>
         public AbilityCallButton abilityCallButton;
+ 
+        public AbilityInfoDisplay abilityInfoDisplay;
 
         /// <summary>
         /// Initialize the abilities spawn buttons
@@ -29,6 +31,8 @@ namespace TowerDefense.UI.HUD
                 button.InitializeButton(ability);
                 button.buttonTapped += OnButtonTapped;
                 button.draggedOff += OnButtonDraggedOff;
+                button.buttonHover += OnButtonHover;
+                button.buttonUnhover += OnButtonUnhover;
             }
         }
 
@@ -51,6 +55,24 @@ namespace TowerDefense.UI.HUD
         }
 
         /// <summary>
+        /// Show ability info
+        /// </summary>
+        /// <param name="ability"></param>
+        void OnButtonHover(Ability ability)
+        {
+            abilityInfoDisplay.Show(ability);
+        }
+
+        /// <summary>
+        /// Hide ability info
+        /// </summary>
+        /// <param name="Ability"></param>
+        void OnButtonUnhover()
+        {
+            abilityInfoDisplay.Hide();
+        }
+
+        /// <summary>
         /// Unsubscribes from all the ability call buttons
         /// </summary>
         void OnDestroy()
@@ -61,6 +83,8 @@ namespace TowerDefense.UI.HUD
             {
                 abilityButton.buttonTapped -= OnButtonTapped;
                 abilityButton.draggedOff -= OnButtonDraggedOff;
+                abilityButton.buttonHover -= OnButtonHover;
+                abilityButton.buttonUnhover -= OnButtonUnhover;
             }
         }
     }
