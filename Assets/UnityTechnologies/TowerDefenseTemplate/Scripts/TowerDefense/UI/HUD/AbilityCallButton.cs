@@ -43,6 +43,17 @@ namespace TowerDefense.UI.HUD
 		public event Action<Ability> draggedOff;
 
         /// <summary>
+        /// Fires when the button is tapped
+        /// </summary>
+        public event Action<Ability> buttonHover;
+
+        /// <summary>
+        /// Fires when the pointer is outside of the button bounds
+        /// and still down
+        /// </summary>
+        public event Action buttonUnhover;
+
+        /// <summary>
         /// The ability controller that defines the button
         /// </summary>
         Ability m_Ability;
@@ -137,10 +148,26 @@ namespace TowerDefense.UI.HUD
 			}
 		}
 
-		/// <summary>
-		/// Update the button's button state based on cost
-		/// </summary>
-		void UpdateButton()
+        /// <summary>
+        /// For when the mouse hovers over button
+        /// </summary>
+        public void OnHover()
+        {
+			buttonHover(m_Ability);
+        }
+
+        /// <summary>
+        /// For when the mouse stops hovering over button
+        /// </summary>
+        public void OnHoverExit()
+        {
+			buttonUnhover();
+        }
+
+        /// <summary>
+        /// Update the button's button state based on cost
+        /// </summary>
+        void UpdateButton()
 		{
 			if (m_Currency == null)
 			{
