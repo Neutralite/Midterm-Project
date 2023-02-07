@@ -29,6 +29,8 @@ namespace TowerDefense.UI.HUD
 				button.InitializeButton(tower);
 				button.buttonTapped += OnButtonTapped;
 				button.draggedOff += OnButtonDraggedOff;
+				button.buttonHover+=OnButtonHover;
+				button.buttonUnhover+=OnButtonUnhover;
 			}
 		}
 
@@ -58,10 +60,24 @@ namespace TowerDefense.UI.HUD
 			}
 		}
 
-		/// <summary>
-		/// Unsubscribes from all the tower spawn buttons
-		/// </summary>
-		void OnDestroy()
+		void OnButtonHover(Tower towerData)
+		{
+            if (GameUI.instance.state == GameUI.State.Normal)
+
+                GameUI.instance.buildInfoUI.Show(towerData);
+		}
+        void OnButtonUnhover()
+        {
+			if (GameUI.instance.state == GameUI.State.Normal)
+			{
+                GameUI.instance.buildInfoUI.Hide();
+            }
+        }
+
+        /// <summary>
+        /// Unsubscribes from all the tower spawn buttons
+        /// </summary>
+        void OnDestroy()
 		{
 			TowerSpawnButton[] childButtons = GetComponentsInChildren<TowerSpawnButton>();
 
@@ -69,7 +85,9 @@ namespace TowerDefense.UI.HUD
 			{
 				towerButton.buttonTapped -= OnButtonTapped;
 				towerButton.draggedOff -= OnButtonDraggedOff;
-			}
+                towerButton.buttonHover -= OnButtonHover;
+                towerButton.buttonUnhover -= OnButtonUnhover;
+            }
 		}
 
 		/// <summary>
