@@ -67,6 +67,13 @@ namespace TowerDefense.Towers
 		}
 
 		/// <summary>
+		/// Gets the moving cost
+		/// </summary>
+		public int moveCost
+		{
+			get { return levelData.moveCost; }
+		}
+		/// <summary>
 		/// Gets the sell value
 		/// </summary>
 		public int sell

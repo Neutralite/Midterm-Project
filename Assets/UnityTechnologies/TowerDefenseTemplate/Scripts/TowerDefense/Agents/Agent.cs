@@ -152,7 +152,8 @@ namespace TowerDefense.Agents
 			base.Remove();
 			
 			m_LevelManager.DecrementNumberOfEnemies();
-			if (m_NavMeshAgent.enabled)
+            m_LevelManager.activeAgents.Remove(this);
+            if (m_NavMeshAgent.enabled)
 			{
 				m_NavMeshAgent.isStopped = true;
 			}
@@ -175,6 +176,7 @@ namespace TowerDefense.Agents
 			m_NavMeshAgent.isStopped = false;
 			
 			m_LevelManager.IncrementNumberOfEnemies();
+			m_LevelManager.activeAgents.Add(this);
 		}
 
 		/// <summary>

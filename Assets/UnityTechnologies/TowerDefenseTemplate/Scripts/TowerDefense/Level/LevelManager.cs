@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.Economy;
 using Core.Health;
 using Core.Utilities;
+using TowerDefense.Abilities.Data;
+using TowerDefense.Agents;
 using TowerDefense.Economy;
 using TowerDefense.Towers.Data;
 using UnityEngine;
@@ -24,10 +27,15 @@ namespace TowerDefense.Level
 		/// </summary>
 		public TowerLibrary towerLibrary;
 
-		/// <summary>
-		/// The currency that the player starts with
-		/// </summary>
-		public int startingCurrency;
+        /// <summary>
+        /// The ability library for this level
+        /// </summary>
+        public AbilityLibrary abilityLibrary;
+
+        /// <summary>
+        /// The currency that the player starts with
+        /// </summary>
+        public int startingCurrency;
 
 		/// <summary>
 		/// The controller for gaining currency
@@ -57,6 +65,7 @@ namespace TowerDefense.Level
 		/// </summary>
 		public int numberOfEnemies { get; protected set; }
 
+		public List<Agent> activeAgents;
 		/// <summary>
 		/// The current state of the level
 		/// </summary>

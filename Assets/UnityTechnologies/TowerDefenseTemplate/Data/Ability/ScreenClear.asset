@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e553af4ca50af4e9489699fd95cfac, type: 3}
+  m_Name: ScreenClear
+  m_EditorClassIdentifier: 
+  description: Destroys all active enemies
+  cost: 20
+  duration: 0.1
+  cooldown: 10
+  icon: {fileID: 21300000, guid: c89059ba06a6b41c8a696007a7dae34d, type: 3}

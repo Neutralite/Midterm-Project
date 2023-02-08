@@ -38,6 +38,11 @@ namespace Core.Data
 		public string musicVolumeParameter;
 
         /// <summary>
+        /// Mixer's SFX volume parameter's attenuation fader value in dB
+        /// </summary>
+        public int sfxAttenuationFaderValue;
+
+        /// <summary>
         /// Mixer's Music volume parameter's attenuation fader value in dB
         /// </summary>
         public int musicAttenuationFaderValue;
@@ -80,7 +85,7 @@ namespace Core.Data
 			}
 			if (sfxVolumeParameter != null)
 			{
-				gameMixer.SetFloat(sfxVolumeParameter, LogarithmicDbTransform(Mathf.Clamp01(sfx)));
+				gameMixer.SetFloat(sfxVolumeParameter, LogarithmicDbTransform(Mathf.Clamp01(sfx))+ sfxAttenuationFaderValue);
 			}
 			if (musicVolumeParameter != null)
 			{

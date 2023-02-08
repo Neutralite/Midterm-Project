@@ -32,8 +32,14 @@ namespace TowerDefense.Towers.Data
 		public int sell;
 
 		/// <summary>
+		/// The move cost of the tower
+		/// </summary>
+		public int moveCost;
+
+		/// <summary>
 		/// The max health
 		/// </summary>
+		
 		public int maxHealth;
 
 		/// <summary>
