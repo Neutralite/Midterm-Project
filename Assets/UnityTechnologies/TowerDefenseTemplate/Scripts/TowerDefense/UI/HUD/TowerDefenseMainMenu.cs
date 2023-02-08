@@ -26,7 +26,7 @@ namespace TowerDefense.UI.HUD
         /// <summary>
         /// Reference to instructions page
         /// </summary>
-        public InstructionsPage instructions;
+        public SimpleMainMenuPage instructions;
 
         /// <summary>
         /// Bring up the options menu
