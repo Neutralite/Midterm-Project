@@ -31775,6 +31775,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114599984734244166, guid: 86d7078c8f1d34aaeaa4541b1dc2e90b,
+        type: 3}
+      propertyPath: sfxAttenuationFaderValue
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114599984734244166, guid: 86d7078c8f1d34aaeaa4541b1dc2e90b,
+        type: 3}
+      propertyPath: musicAttenuationFaderValue
+      value: -25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d7078c8f1d34aaeaa4541b1dc2e90b, type: 3}
 --- !u!1 &842424927
